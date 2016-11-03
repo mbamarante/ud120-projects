@@ -43,11 +43,29 @@ data_dict = pickle.load( open("../final_project/final_project_dataset.pkl", "r")
 ### there's an outlier--remove it! 
 data_dict.pop("TOTAL", 0)
 
+exercised_stock_options_list = list()
+
+for key, value in data_dict.iteritems():
+    exercised_stock_options_list.append([key, value["exercised_stock_options"]])
+
+import pprint
+pprint.pprint(sorted(exercised_stock_options_list, key=lambda tup: tup[1]))
+
+
+salary_list = list()
+
+for key, value in data_dict.iteritems():
+    salary_list.append([key, value["salary"]])
+
+import pprint
+pprint.pprint(sorted(salary_list, key=lambda tup: tup[1]))
+
 
 ### the input features we want to use 
 ### can be any key in the person-level dictionary (salary, director_fees, etc.) 
 feature_1 = "salary"
 feature_2 = "exercised_stock_options"
+#feature_3 = "total_payments"
 poi  = "poi"
 features_list = [poi, feature_1, feature_2]
 data = featureFormat(data_dict, features_list )
@@ -59,13 +77,16 @@ poi, finance_features = targetFeatureSplit( data )
 ### for f1, f2, _ in finance_features:
 ### (as it's currently written, the line below assumes 2 features)
 for f1, f2 in finance_features:
-    plt.scatter( f1, f2 )
+    plt.scatter( f1, f2)
 plt.show()
 
 ### cluster here; create predictions of the cluster labels
 ### for the data and store them to a list called pred
+from sklearn.cluster import KMeans
+import numpy as np
 
-
+kmeans = KMeans(n_clusters=2, random_state=0).fit(finance_features)
+pred = kmeans.labels_
 
 
 ### rename the "name" parameter when you change the number of features
