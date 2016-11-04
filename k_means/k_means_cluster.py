@@ -48,8 +48,8 @@ exercised_stock_options_list = list()
 for key, value in data_dict.iteritems():
     exercised_stock_options_list.append([key, value["exercised_stock_options"]])
 
-import pprint
-pprint.pprint(sorted(exercised_stock_options_list, key=lambda tup: tup[1]))
+#import pprint
+#pprint.pprint(sorted(exercised_stock_options_list, key=lambda tup: tup[1]))
 
 
 salary_list = list()
@@ -57,8 +57,8 @@ salary_list = list()
 for key, value in data_dict.iteritems():
     salary_list.append([key, value["salary"]])
 
-import pprint
-pprint.pprint(sorted(salary_list, key=lambda tup: tup[1]))
+#import pprint
+#pprint.pprint(sorted(salary_list, key=lambda tup: tup[1]))
 
 
 ### the input features we want to use 
@@ -83,11 +83,24 @@ plt.show()
 ### cluster here; create predictions of the cluster labels
 ### for the data and store them to a list called pred
 from sklearn.cluster import KMeans
+from sklearn import preprocessing
 import numpy as np
 
-kmeans = KMeans(n_clusters=2, random_state=0).fit(finance_features)
-pred = kmeans.labels_
+#print finance_features
+#print np.argwhere(numpy.asarray(finance_features)[:, 0] == 200000)
+#pos_salaray_200k = finance_features[:,0].argwhere(200000)
+#pos_exercised_stock_options_1m = finance_features[:,1].argwhere(1000000000)
+#print pos_salaray_200k, pos_exercised_stock_options_1m
 
+min_max_scaler = preprocessing.MinMaxScaler()
+rescaled_finance_features = min_max_scaler.fit_transform(finance_features)
+
+financial_features_test = numpy.array([200000., 1000000.])
+financial_features_test_transformed = min_max_scaler.transform(financial_features_test)
+print financial_features_test_transformed
+
+kmeans = KMeans(n_clusters=2, random_state=0).fit(rescaled_finance_features)
+pred = kmeans.labels_
 
 ### rename the "name" parameter when you change the number of features
 ### so that the figure gets saved to a different file
