@@ -111,6 +111,7 @@ print classification_report(y_test, y_pred, target_names=target_names)
 print confusion_matrix(y_test, y_pred, labels=range(n_classes))
 
 
+
 ###############################################################################
 # Qualitative evaluation of the predictions using matplotlib
 
@@ -141,6 +142,9 @@ plot_gallery(X_test, prediction_titles, h, w)
 # plot the gallery of the most significative eigenfaces
 
 eigenface_titles = ["eigenface %d" % i for i in range(eigenfaces.shape[0])]
-plot_gallery(eigenfaces, eigenface_titles, h, w)
+# plot_gallery(eigenfaces, eigenface_titles, h, w)
+#
+# pl.show()
 
-pl.show()
+print pca.components_
+print pca.explained_variance_ratio_
