@@ -38,3 +38,5 @@ Os resultados foram confrontados com K Fold Cross Validation e com as métricas 
 ### 6. Give at least 2 evaluation metrics and your average performance for each of them.  Explain an interpretation of your metrics that says something human-understandable about your algorithm’s performance. [relevant rubric item: “usage of evaluation metrics”]
 
 As principais métricas utilizadas foram precision e recall. Recall mede o quão completos são os resultados. Quanto mais alta esta métrica maior a possibilidade de selecionar um verdadeiro positivo, ainda que falsos positivos venham a ocorrer. Quando queremos garantir o maior número de casos a investigar, esta é principal métrica a ser avaliada. Já Precision mede o quão úteis são os resultados. Através dela, vamos medir os nossos acertos, ainda que alguns resultados positivos sejam descartados. 
+
+Dados os resultados alcançados neste projeto, para o algoritmo GaussianNB utilizando PCA, onde precision = 0.55469	 e recall = 0.39050, podemos dizer que há mais precisão do que revocação. Portanto, são maiores as chances do resultados positivo estar correto, e menores as chances de todos os positivos terem sido identificados.
