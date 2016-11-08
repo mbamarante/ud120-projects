@@ -6,9 +6,12 @@ sys.path.append("../tools/")
 from sklearn.grid_search import GridSearchCV
 from feature_format import featureFormat, targetFeatureSplit
 
-# Performance
-# algorithm         features    outilers (%)    precision   recall
-# GaussianNB               4              10      0.14763	0.05750
+# Performance > .3
+# GaussianNB               Precision: 0.50902	Recall: 0.39500
+# DicisionTree             Precision: 0.30242	Recall: 0.31300
+# AdaBoost                 Precision: 0.30717	Recall: 0.31700
+# GaussianNB/PCA           Precision: 0.55469	Recall: 0.39050
+
 # GaussianNB/PCA           4              10      0.24971	0.10600
 # GaussianNB/PCA           6              10      0.21106	0.11450
 # SVC                      4              10            -         -
@@ -26,20 +29,20 @@ from feature_format import featureFormat, targetFeatureSplit
 # RandomForest             4              10      0.31516	 0.11850
 
 def new_classifier():
-    # return new_gaussian_nb()
+    return new_gaussian_nb()
     # return new_svc()
     # return new_decision_tree()
-    return new_k_neighbors()
+    # return new_k_neighbors()
     # return new_ada_boost_classifier()
     # return new_random_forest()
 
 def new_tunned_classifier(my_dataset, features_list):
     data = featureFormat(my_dataset, features_list, sort_keys=True)
     labels, features = targetFeatureSplit(data)
-    # return new_tunned_gaussian_nb()
+    return new_tunned_gaussian_nb()
     # return new_tunned_svc(features, labels)
     # return new_tunned_decision_tree(features, labels)
-    return new_tunned_k_neighbors(features, labels)
+    # return new_tunned_k_neighbors(features, labels)
 
 def new_gaussian_nb():
     from sklearn.naive_bayes import GaussianNB
@@ -98,7 +101,7 @@ def new_tunned_k_neighbors(features, labels):
     metrics = ['minkowski', 'euclidean', 'manhattan']
     weights = ['distance']
     leaf_size = [2, 3, 4, 5, 7, 10, 15]
-    numNeighbors = np.arange(2, 6)
+    numNeighbors = np.arange(2, 4)
     param_grid = dict(metric=metrics, leaf_size=leaf_size, weights=weights, n_neighbors=numNeighbors)
     grid = GridSearchCV(KNeighborsClassifier(), param_grid=param_grid)
     grid.fit(features, labels)

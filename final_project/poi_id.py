@@ -8,6 +8,7 @@ sys.path.append("../tools/")
 from feature_format import featureFormat, targetFeatureSplit
 from tester import dump_classifier_and_data
 from select_features import get_features
+from select_features import print_features_score
 from remove_outliers import clean_outilers
 from scale import do_scale
 from create_features import new_features
@@ -22,21 +23,27 @@ from my_validate import do_validate
 with open("final_project_dataset.pkl", "r") as data_file:
     data_dict = pickle.load(data_file)
 
-features_list = get_features(data_dict, features_number=4)
+raw_features_list = ['poi', 'salary', 'deferral_payments', 'total_payments', 'loan_advances', 'bonus',
+                     'restricted_stock_deferred', 'deferred_income', 'total_stock_value', 'expenses',
+                     'exercised_stock_options', 'other', 'long_term_incentive', 'restricted_stock',
+                     'director_fees', 'to_messages', 'from_poi_to_this_person', 'from_messages',
+                     'from_this_person_to_poi', 'shared_receipt_with_poi']
 
-
-### task 2: temove outliers
-my_dataset = clean_outilers(data_dict, features_list, percentile=10)
+### task 2: remove outliers
+my_dataset = clean_outilers(data_dict, raw_features_list, percentile=5)
 
 ### task 3: create new feature(s)
-features_list, my_dataset = new_features(data_dict, my_dataset, features_list)
+raw_features_list, my_dataset = new_features(my_dataset, raw_features_list)
 
 ## scale
-my_dataset = do_scale(my_dataset, features_list)
+my_dataset = do_scale(my_dataset, raw_features_list)
 
+## feature selection
+print_features_score(my_dataset, raw_features_list)
+features_list = ['poi', 'exercised_stock_options', 'income', 'deferred_income', 'long_term_incentive']
 
 ### Extract features and labels from dataset for local testing
-# data = featureFormat(my_dataset, features_list, sort_keys = True)
+# data = featureFormat(my_dataset, features_list, sort_keys = False)
 # labels, features = targetFeatureSplit(data)
 
 ### Task 4: Try a varity of classifiers

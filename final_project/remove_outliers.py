@@ -13,7 +13,6 @@ def show_boxplot(data, name):
     sns.violinplot(data, color="green", orient="v", title=name)
     sns.plt.show()
 
-
 def show_features(data_dict, feat1, feat2):
     data = featureFormat(data_dict, [feat1, feat2])
     data_poi = featureFormat(data_dict, ["poi"])
@@ -23,7 +22,6 @@ def show_features(data_dict, feat1, feat2):
     matplotlib.pyplot.xlabel(feat1)
     matplotlib.pyplot.ylabel(feat2)
     matplotlib.pyplot.show()
-
     # print "highest", feat1, dict_find(feat1, data[:, 0].max())
     # print "highest", feat2, dict_find(feat2, data[:, 1].max())
 
@@ -40,27 +38,7 @@ def get_lower(data, percentil):
 
 def clean_outilers(data_dict, features_list, percentile=10):
     data_dict.pop("TOTAL", 0)
-
-    # show_features("to_messages", "from_messages")
-    # show_features("from_this_person_to_poi", "total_payments")
-
-    # i = 0
-    # for feature in features_list:
-    #     if i > 0:
-    #         data = np.delete(data, get_10_higher(data[:, i], features_list[i]), 0)
-    #     i += 1
-
     data_array = featureFormat( data_dict, features_list, remove_all_zeroes=False )
-
-    # print data_dict.keys()[10]
-    # print data_dict.values()[10]
-    # print features_list
-    # print features[10]
-    # print data_array[:,1]
-    # print features[0]
-    # print get_higher(features[:, 0], 10)
-    # exit()
-
     to_remove = []
 
     for i in range(1, len(features_list)):
