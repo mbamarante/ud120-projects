@@ -15,3 +15,7 @@ pip install nltk
 ```
 tools/startup.py
 ```
+
+# Final Project
+
+[Report](final_project/report.md)
