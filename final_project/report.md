@@ -1,6 +1,6 @@
 # Enron Submission Free-Response Questions
 
-### Topic 1. Summarize for us the goal of this project and how machine learning is useful in trying to accomplish it. As part of your answer, give some background on the dataset and how it can be used to answer the project question. Were there any outliers in the data when you got it, and how did you handle those?  [relevant rubric items: “data exploration”, “outlier investigation”]
+### 1. Summarize for us the goal of this project and how machine learning is useful in trying to accomplish it. As part of your answer, give some background on the dataset and how it can be used to answer the project question. Were there any outliers in the data when you got it, and how did you handle those?  [relevant rubric items: “data exploration”, “outlier investigation”]
 
 O objetivo deste projeto é identificar funcionários da Enron, chamados Pessoas de Intesse (POIs), que possam ter cometido fraude. Foram utilizas informações públicas divulgadas durante a investigação da gigante norte americana, que atuava principalmente no ramo de energia. Chamada pela revista Fortune de "[America's Most Innovative Company](https://en.wikipedia.org/wiki/Enron)" por seis anos consecutivos, decretou falência em 2001.
 
