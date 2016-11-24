@@ -29,11 +29,11 @@ from feature_format import featureFormat, targetFeatureSplit
 # RandomForest             4              10      0.31516	 0.11850
 
 def new_classifier():
-    return new_gaussian_nb()
+    # return new_gaussian_nb()
     # return new_svc()
     # return new_decision_tree()
     # return new_k_neighbors()
-    # return new_ada_boost_classifier()
+    return new_ada_boost_classifier()
     # return new_random_forest()
 
 def new_tunned_classifier(my_dataset, features_list):

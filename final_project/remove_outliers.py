@@ -38,6 +38,7 @@ def get_lower(data, percentil):
 
 def clean_outilers(data_dict, features_list, percentile=10):
     data_dict.pop("TOTAL", 0)
+    data_dict.pop("LOCKHART EUGENE E", 0)
     data_array = featureFormat( data_dict, features_list, remove_all_zeroes=False )
     to_remove = []
 

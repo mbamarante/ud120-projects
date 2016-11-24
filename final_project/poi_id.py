@@ -13,6 +13,7 @@ from remove_outliers import clean_outilers
 from scale import do_scale
 from create_features import new_features
 from create_classifier import new_classifier, new_tunned_classifier
+from my_pre_processing import counting_zeros, only_zeros
 from my_validate import do_validate
 
 ### Task 1: Select what features you'll use.
@@ -28,6 +29,10 @@ raw_features_list = ['poi', 'salary', 'deferral_payments', 'total_payments', 'lo
                      'exercised_stock_options', 'other', 'long_term_incentive', 'restricted_stock',
                      'director_fees', 'to_messages', 'from_poi_to_this_person', 'from_messages',
                      'from_this_person_to_poi', 'shared_receipt_with_poi']
+
+### task pre-processing
+counting_zeros(data_dict, raw_features_list)
+only_zeros(data_dict, raw_features_list)
 
 ### task 2: remove outliers
 my_dataset = clean_outilers(data_dict, raw_features_list, percentile=5)
@@ -52,7 +57,7 @@ features_list = ['poi', 'exercised_stock_options', 'income', 'deferred_income', 
 ### you'll need to use Pipelines. For more info:
 ### http://scikit-learn.org/stable/modules/pipeline.html
 
-# clf = new_classifier()
+clf = new_classifier()
 
 ### Task 5: Tune your classifier to achieve better than .3 precision and recall 
 ### using our testing script. Check the tester.py script in the final project
@@ -61,7 +66,7 @@ features_list = ['poi', 'exercised_stock_options', 'income', 'deferred_income', 
 ### stratified shuffle split cross validation. For more info: 
 ### http://scikit-learn.org/stable/modules/generated/sklearn.cross_validation.StratifiedShuffleSplit.html
 
-clf = new_tunned_classifier(my_dataset, features_list)
+# clf = new_tunned_classifier(my_dataset, features_list)
 
 do_validate(clf, 10, my_dataset, features_list)
 
