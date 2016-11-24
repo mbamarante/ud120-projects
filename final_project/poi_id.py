@@ -57,7 +57,7 @@ features_list = ['poi', 'exercised_stock_options', 'income', 'deferred_income', 
 ### you'll need to use Pipelines. For more info:
 ### http://scikit-learn.org/stable/modules/pipeline.html
 
-clf = new_classifier()
+# clf = new_classifier()
 
 ### Task 5: Tune your classifier to achieve better than .3 precision and recall 
 ### using our testing script. Check the tester.py script in the final project
@@ -66,7 +66,7 @@ clf = new_classifier()
 ### stratified shuffle split cross validation. For more info: 
 ### http://scikit-learn.org/stable/modules/generated/sklearn.cross_validation.StratifiedShuffleSplit.html
 
-# clf = new_tunned_classifier(my_dataset, features_list)
+clf = new_tunned_classifier(my_dataset, features_list)
 
 do_validate(clf, 10, my_dataset, features_list)
 
